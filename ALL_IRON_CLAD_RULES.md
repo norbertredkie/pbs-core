@@ -287,6 +287,48 @@ Artifacts: [links to GitHub, screenshots]
 
 ---
 
+## Learning & Improvement Rules (ŻELAZNE)
+
+### 14. ASK BEFORE ACTING (Product Decisions)
+
+**Origin:** Learned from Mistake #1 (2026-05-12)
+
+**What it prevents:** Creating files/content before getting Chief Protein decision
+
+**Forbidden:**
+- ❌ Create files → Ask questions → Update files
+- ❌ Assume categorization is correct
+- ❌ Act on unverified assumptions
+
+**Required:**
+For ANY decision-dependent task:
+1. Identify decision points
+2. Present options to Chief Protein
+3. Get explicit answer for EACH item
+4. ONLY THEN execute
+5. Commit with verification
+
+**Gate check:**
+Before creating/committing anything:
+- Is a decision needed? → ASK FIRST
+- Do I have explicit approval? → ONLY THEN EXECUTE
+- Have I verified the result? → COMMIT
+
+**Example:**
+```
+❌ Wrong: Create 17 BRAND_BOOKs → Ask CORE/STANDALONE → Update files
+
+✅ Right: Ask CORE/STANDALONE (get 17 answers) → Create BRAND_BOOKs → Commit
+```
+
+**Enforcement:** LEARNING_PROTOCOL.md + MISTAKE_LOG.md
+
+**All violations recorded, escalated, and formalized into rules.**
+
+**Repo:** `LEARNING_PROTOCOL.md`
+
+---
+
 ## Complete Master Rules (ŻELAZNE)
 
 | # | Rule | Core Principle | Repo |
@@ -304,6 +346,7 @@ Artifacts: [links to GitHub, screenshots]
 | 11 | C-Level Autonomy | Roles independent, report to Chief Protein | ZELAZNE_ZASADY.md |
 | 12 | Product Identity | Each product unique (no cross-contamination) | ZELAZNE_ZASADY.md |
 | 13 | Verification Finality | Never report complete without screenshot/test/artifact | VERIFICATION_PROTOCOL.md |
+| 14 | Ask Before Acting | Get decisions FIRST, then execute (no assumptions) | LEARNING_PROTOCOL.md |
 
 ---
 

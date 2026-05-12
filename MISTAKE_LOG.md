@@ -52,12 +52,15 @@ Before creating/committing anything:
 - Have I verified the result? → COMMIT
 
 **Chief Protein decision:**
-[AWAITING APPROVAL]
+✅ APPROVED — Add Rule #14 to IRON_CLAD
 
 **Resolution:**
-[PENDING]
+✅ RESOLVED — Formalized as Rule #14: Ask Before Acting (Product Decisions)
+- Added to ALL_IRON_CLAD_RULES.md
+- Committed to GitHub commit 8adc7a4
+- Going forward: All product decisions follow this gate
 
-**Status:** OPEN (awaiting Chief Protein approval)
+**Status:** ✅ RESOLVED (Rule #14 added to IRON_CLAD)
 
 ---
 

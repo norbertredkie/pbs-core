@@ -29,68 +29,115 @@
 
 ## CEO Responsibility
 
-**You must verify:**
+**You are not human, but you must verify AS IF human.** Use browser-based tools (Selenium, Playwright, browser API) to simulate real user behavior.
 
-1. **Test all 238 footnotes** using paranoia protocol:
-   - First pass: Run automated checks
-   - Second pass: Re-run same checks, compare results
-   - Manual spot-check: 20-30 random links via human browser
-   - Screenshot proof of broken/paywalled links
+**Task: Verify ALL 238 footnotes** (not just sample):
 
-2. **Determine true RED count:**
-   - CTO said: 0-2 broken links
-   - Reality: At least 1 (link #10)
-   - Actual number: **UNKNOWN** (needs verification)
+1. **Pass 1 - Automated checks** (what CTO did):
+   - HEAD requests to all 238 URLs
+   - Record status codes
 
-3. **Make publication decision:**
-   - If RED count > 5%: Book needs rewrite/link cleanup
-   - If RED count < 5%: Book can publish with disclaimer
+2. **Pass 2 - Human-simulation check** (what CEO must do):
+   - Use Selenium/Playwright to load each URL in real browser
+   - Handle JavaScript rendering
+   - Bypass bot detection (use proper User-Agent headers)
+   - Take screenshot of first 20 and all RED links
+   - Record actual content or "404" error
+
+3. **Pass 3 - Comparison & discrepancy analysis**:
+   - Compare Pass 1 (automated) vs Pass 2 (browser)
+   - Identify links that differ (automated said OK, browser says 404)
+   - These are link rot cases (what CTO missed on link #10)
+
+4. **Determine true RED count:**
+   - CTO said: 0 RED (from HEAD requests)
+   - Norbert found: At least 1 RED (link #10, via browser)
+   - CEO must test all 238 with browser to find ACTUAL RED count
+
+5. **Make publication decision:**
+   - If RED count > 5%: Book needs link cleanup before publishing
+   - If RED count 2-5%: Publish with disclaimer + link archive
+   - If RED count < 2%: Acceptable, add footnote about link maintenance
    - Either way: Footnotes must be flagged (🔒 paywalled, 🔴 broken, 🟢 verified)
 
-4. **Assign accountability:**
-   - If CTO missed RED links: Why? (automation limits? negligence?)
-   - If author never verified links: Why?
-   - Who checks links before next edition?
+6. **Assign accountability:**
+   - If CTO missed RED links: Document why automated testing failed
+   - If author never verified links: Author must review before republishing
+   - Future process: CEO checks all links on EVERY edition
 
 ---
 
-## CTO's Audit Output (Unverified)
+## Implementation: CEO Browser Testing
+
+**Tools:** Use Selenium/Playwright/Puppeteer to simulate human browser
+
+**Script outline:**
+```python
+for url in all_238_urls:
+    # Pass 2: Browser simulation
+    browser.get(url)
+    
+    # Wait for JS to render
+    wait.until(elements_loaded)
+    
+    # Check result
+    if browser.title == "404" or "not found" in content.lower():
+        flag = "🔴 RED"
+    elif "subscribe" in content or "paywall" in content:
+        flag = "🟡 YELLOW"
+    else:
+        flag = "🟢 GREEN"
+    
+    # Screenshot all RED + sample of GREEN/YELLOW
+    if flag == "🔴" or random.random() < 0.1:
+        browser.save_screenshot(f"links/{url_hash}.png")
+```
+
+**Output:** `/tmp/CEO_footnotes_browser_verified.json`
+```json
+{
+    "pass1_automated": {...},
+    "pass2_browser": {...},
+    "discrepancies": [...],
+    "screenshots": [
+        {"url": "...", "status": "🔴", "image": "..."}
+    ],
+    "final_counts": {
+        "green": X,
+        "yellow": Y,
+        "red": Z
+    }
+}
+```
+
+---
+
+## CTO's Unverified Output
 
 **Files created:**
 - `/tmp/footnotes_list.json` — All 238 extracted footnotes
-- `/tmp/footnotes_analysis_combined.json` — Combined stats from 80-link sample
+- `/tmp/footnotes_analysis_combined.json` — Combined stats (80-link sample)
 - `/tmp/FOOTNOTES_DETAILED_1_50.md` — Detailed analysis (first 50)
-- `/tmp/FOOTNOTES_VERIFICATION_REPORT.md` — Full report
+- `/tmp/paranoia_check_1_50_verified.json` — Paranoia-verified first 50 (2-pass)
 
-**Claims (Not yet verified by paranoia protocol):**
-- 36% GREEN (fully accessible)
-- 61% YELLOW (paywalled/access-restricted)
-- 2.5% RED (broken, extrapolated)
+**CTO Claims (Partially verified):**
+- 34% GREEN (first 50, double-verified ✅)
+- 66% YELLOW (first 50, double-verified ✅)
+- 0% RED in first 50 (INCORRECT ❌ — link #10 is actually RED per Norbert's browser test)
 
-**Status:** UNVERIFIED — Needs CEO double-check
+**Status:** INCOMPLETE — CEO must test all 238 with browser to get true counts
 
 ---
 
-## Your Task
+## Your Implementation Checklist
 
-**Option A: Deep Verification (Recommended)**
-```bash
-1. Download all 238 URLs
-2. Run 2-pass automated check (compare results)
-3. Manually test 30 random links via browser
-4. Take screenshots of 5 RED links (proof)
-5. Report true RED % to author
-```
-
-**Option B: Spot Verification (Quick)**
-```bash
-1. Test 50 random links via browser
-2. Extrapolate RED % from sample
-3. Declare accuracy ±5%
-4. Escalate to author for link cleanup
-```
-
-**Recommendation:** Option A (book credibility depends on it)
+- [ ] Write browser-based testing script (Selenium/Playwright)
+- [ ] Test all 238 URLs with real browser simulation
+- [ ] Compare Pass 1 (automated) vs Pass 2 (browser) results
+- [ ] Take screenshots of all RED links + 10% sample of GREEN/YELLOW
+- [ ] Generate final report: discrepancies + true RED count
+- [ ] Make publication decision based on RED %
+- [ ] Create link maintenance plan for future editions
 
 ---
 

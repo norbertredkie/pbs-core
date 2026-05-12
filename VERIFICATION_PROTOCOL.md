@@ -46,21 +46,24 @@ For **git/deployment** tasks:
 
 For **link/reference** tasks (footnotes, citations, bibliography):
 
-⚠️ **LIMITATION: Bot detection creates false data**
-- HEAD requests → Bot detection blocks access (401/403)
-- Selenium/Playwright → Bot detection shows fake 404s (error pages, ads, JavaScript errors)
-- Tor/Onion browser → May bypass some blocks but still not 100% reliable
-- **Only method: Real human browser with manual screenshots**
+⚠️ **LIMITATION: Bot detection makes AI verification unreliable**
+- HEAD requests return 401/403 (bot blocked)
+- Selenium/Playwright return fake 404s (bot detection shows error pages)
+- Only humans naturally bypass bot detection
 
-**CEO verification for links:**
-1. ✅ CEO does NOT spot-check (10 links, 20 links)
-2. ✅ CEO tests links that CAN be accessed without bot blocking
-3. ✅ For paywalled/blocked links: Mark as YELLOW (unverifiable), not RED
-4. ✅ Screenshot ALL links tested (proof of actual status, not false 404s)
-5. ✅ **CEO reports: "These X links I could verify, these Y links are blocked by bot detection and cannot be verified"**
-6. ✅ **For unverifiable links: Recommend author provide direct quotes in book as proof**
+**CEO escalation for links:**
+1. ✅ CEO runs automated check: HEAD requests on ALL links
+2. ✅ CEO categorizes results:
+   - **200/accessible:** Mark as GREEN
+   - **404:** ESCALATE to Chief Protein for human verification
+   - **401/403:** ESCALATE to Chief Protein for human verification
+3. ✅ **CEO reports:** "X links GREEN (automated verified). Y links need Chief Protein verification (404/401/403)."
+4. ✅ **CEO sends list of 404/401/403 links to Chief Protein with message:** "Please manually verify these links in real browser"
 
-**Critical rule: Do NOT assume 404 in page content = broken link. Bot detection fakes 404s.**
+**Critical rule: Do NOT try to verify 404s or 401s yourself with browser automation. Escalate to Chief Protein instead.**
+- Bot detection fakes 404s
+- Only human browser can verify true status
+- Chief Protein has access to real browser
 
 ---
 
